@@ -1,0 +1,7 @@
+*.blend1
+node_modules/
+dist/
+.env
+.envrc
+.bun-tmp
+.DS_Store
