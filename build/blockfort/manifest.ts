@@ -18,17 +18,11 @@ const BLOCKFORT_MANIFEST_BUILD_MATERIAL: readonly ManifestBuildMaterial[] =
 
 export class BlockfortManifestBuild implements ITask {
     private readonly manifestBuildTask = new ManifestBuild(BLOCKFORT_MANIFEST_PATH, {
-        meta: {
-            name: "blockfort",
-            author: "tlonny <timlonsdale@gmail.com>",
-        },
-        level: {
-            model: BLOCKFORT_MODEL_GLB_PATH,
-            collider: BLOCKFORT_COLLIDER_GLB_PATH,
-            track: BLOCKFORT_BGM_OGG_DST_PATH,
-            spawnPath: BLOCKFORT_SPAWN_JSON_PATH,
-            materials: BLOCKFORT_MANIFEST_BUILD_MATERIAL,
-        },
+        model: BLOCKFORT_MODEL_GLB_PATH,
+        collider: BLOCKFORT_COLLIDER_GLB_PATH,
+        track: BLOCKFORT_BGM_OGG_DST_PATH,
+        spawnPath: BLOCKFORT_SPAWN_JSON_PATH,
+        materials: BLOCKFORT_MANIFEST_BUILD_MATERIAL,
         portals: {
             pipe_wall: {
                 collider: BLOCKFORT_PIPE_WALL_PORTAL_GLB_PATH,

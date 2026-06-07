@@ -20,16 +20,10 @@ const NUKE_MANIFEST_BUILD_MATERIAL: readonly ManifestBuildMaterial[] = NUKE_MATE
 
 export const nukeManifestTaskBuild = (): ITask => {
     const manifestBuildTask = new ManifestBuild(NUKE_MANIFEST_PATH, {
-        meta: {
-            name: "de_nuke",
-            author: "tlonny <timlonsdale@gmail.com>",
-        },
-        level: {
-            model: NUKE_MODEL_GLB_PATH,
-            collider: NUKE_COLLIDER_GLB_PATH,
-            spawnPath: NUKE_SPAWN_JSON_PATH,
-            materials: NUKE_MANIFEST_BUILD_MATERIAL,
-        },
+        model: NUKE_MODEL_GLB_PATH,
+        collider: NUKE_COLLIDER_GLB_PATH,
+        spawnPath: NUKE_SPAWN_JSON_PATH,
+        materials: NUKE_MANIFEST_BUILD_MATERIAL,
         portals: {
             forest_arch: {
                 collider: NUKE_FOREST_ARCH_PORTAL_GLB_PATH,

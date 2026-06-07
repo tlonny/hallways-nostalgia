@@ -18,17 +18,11 @@ const DEKUTREE_MANIFEST_BUILD_MATERIAL: readonly ManifestBuildMaterial[] =
 
 export class DekutreeManifestBuild implements ITask {
     private readonly manifestBuildTask = new ManifestBuild(DEKUTREE_MANIFEST_PATH, {
-        meta: {
-            name: "dekutree",
-            author: "tlonny <timlonsdale@gmail.com>",
-        },
-        level: {
-            model: DEKUTREE_MODEL_GLB_PATH,
-            collider: DEKUTREE_COLLIDER_GLB_PATH,
-            track: DEKUTREE_BGM_OGG_DST_PATH,
-            spawnPath: DEKUTREE_SPAWN_JSON_PATH,
-            materials: DEKUTREE_MANIFEST_BUILD_MATERIAL,
-        },
+        model: DEKUTREE_MODEL_GLB_PATH,
+        collider: DEKUTREE_COLLIDER_GLB_PATH,
+        track: DEKUTREE_BGM_OGG_DST_PATH,
+        spawnPath: DEKUTREE_SPAWN_JSON_PATH,
+        materials: DEKUTREE_MANIFEST_BUILD_MATERIAL,
         portals: {
             forest: {
                 collider: DEKUTREE_FOREST_PORTAL_GLB_PATH,

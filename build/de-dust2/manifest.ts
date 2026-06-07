@@ -19,16 +19,10 @@ const DUST2_MANIFEST_BUILD_MATERIAL: readonly ManifestBuildMaterial[] = DUST2_MA
 
 export const dust2ManifestTaskBuild = (): ITask => {
     const manifestBuildTask = new ManifestBuild(DUST2_MANIFEST_PATH, {
-        meta: {
-            name: "de_dust2",
-            author: "tlonny <timlonsdale@gmail.com>",
-        },
-        level: {
-            model: DUST2_MODEL_GLB_PATH,
-            collider: DUST2_COLLIDER_GLB_PATH,
-            spawnPath: DUST2_SPAWN_JSON_PATH,
-            materials: DUST2_MANIFEST_BUILD_MATERIAL,
-        },
+        model: DUST2_MODEL_GLB_PATH,
+        collider: DUST2_COLLIDER_GLB_PATH,
+        spawnPath: DUST2_SPAWN_JSON_PATH,
+        materials: DUST2_MANIFEST_BUILD_MATERIAL,
         portals: {
             arch: {
                 collider: DUST2_ARCH_PORTAL_GLB_PATH,

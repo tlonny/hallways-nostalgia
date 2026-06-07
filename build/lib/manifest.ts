@@ -30,7 +30,7 @@ type ManifestPortal = {
     }
 }
 
-type ManifestLevel = {
+type ManifestRootFields = {
     model: string
     collider?: string
     track?: string
@@ -38,18 +38,10 @@ type ManifestLevel = {
     materials: Record<string, ManifestMaterial>
 }
 
-type ManifestMeta = {
-    name: string
-    author?: string
-    track?: string
-}
-
 type Manifest = {
     _version: typeof LEVEL_MANIFEST_VERSION
-    meta: ManifestMeta
-    level: ManifestLevel
     portals: Record<string, ManifestPortal>
-}
+} & ManifestRootFields
 
 export type ManifestBuildMaterial = {
     name: string
@@ -62,14 +54,11 @@ export type ManifestBuildMaterial = {
 export type ManifestBuildPortal = ManifestPortal
 
 export type ManifestBuildInput = {
-    meta: ManifestMeta
-    level: {
-        model: string
-        collider?: string
-        track?: string
-        spawnPath?: string
-        materials: readonly ManifestBuildMaterial[]
-    }
+    model: string
+    collider?: string
+    track?: string
+    spawnPath?: string
+    materials: readonly ManifestBuildMaterial[]
     portals: Record<string, ManifestBuildPortal>
 }
 
@@ -101,7 +90,7 @@ export class ManifestBuild implements ITask {
             }
 
             const materials: Record<string, ManifestMaterial> = {}
-            for (const item of this.input.level.materials) {
+            for (const item of this.input.materials) {
                 const materialValue: ManifestMaterial = {
                     frames: item.frames.map((frame) => manifestRelativePath(frame)),
                 }
@@ -119,10 +108,10 @@ export class ManifestBuild implements ITask {
             }
 
             let spawn: ManifestVec3 | undefined
-            if (this.input.level.spawnPath) {
+            if (this.input.spawnPath) {
                 spawn = parse(
                     MANIFEST_SPAWN_SCHEMA,
-                    await Bun.file(this.input.level.spawnPath).json(),
+                    await Bun.file(this.input.spawnPath).json(),
                 )
             }
 
@@ -137,24 +126,23 @@ export class ManifestBuild implements ITask {
                 portals[name] = portal
             }
 
-            const level: ManifestLevel = {
-                model: manifestRelativePath(this.input.level.model),
+            const rootFields: ManifestRootFields = {
+                model: manifestRelativePath(this.input.model),
                 materials,
             }
-            if (this.input.level.collider) {
-                level.collider = manifestRelativePath(this.input.level.collider)
+            if (this.input.collider) {
+                rootFields.collider = manifestRelativePath(this.input.collider)
             }
-            if (this.input.level.track) {
-                level.track = manifestRelativePath(this.input.level.track)
+            if (this.input.track) {
+                rootFields.track = manifestRelativePath(this.input.track)
             }
             if (spawn) {
-                level.spawn = spawn
+                rootFields.spawn = spawn
             }
 
             const manifest: Manifest = {
                 _version: LEVEL_MANIFEST_VERSION,
-                meta: this.input.meta,
-                level,
+                ...rootFields,
                 portals,
             }
 

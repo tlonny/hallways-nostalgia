@@ -27,17 +27,11 @@ const HANGAR_MANIFEST_BUILD_MATERIAL: readonly ManifestBuildMaterial[] =
 
 export const hangarManifestTaskBuild = (): ITask => {
     const manifestBuildTask = new ManifestBuild(HANGAR_MANIFEST_PATH, {
-        meta: {
-            name: "hangar",
-            author: "tlonny <timlonsdale@gmail.com>",
-        },
-        level: {
-            model: HANGAR_MODEL_GLB_PATH,
-            collider: HANGAR_COLLIDER_GLB_PATH,
-            track: HANGAR_BGM_OGG_DST_PATH,
-            spawnPath: HANGAR_SPAWN_JSON_PATH,
-            materials: HANGAR_MANIFEST_BUILD_MATERIAL,
-        },
+        model: HANGAR_MODEL_GLB_PATH,
+        collider: HANGAR_COLLIDER_GLB_PATH,
+        track: HANGAR_BGM_OGG_DST_PATH,
+        spawnPath: HANGAR_SPAWN_JSON_PATH,
+        materials: HANGAR_MANIFEST_BUILD_MATERIAL,
         portals: {
             arch: {
                 collider: HANGAR_ARCH_PORTAL_GLB_PATH,
